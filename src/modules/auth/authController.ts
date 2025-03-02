@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { authService } from "../auth/authService";
-import {TokenResponse} from '../authTypes'
+import {TokenResponse} from './authTypes'
 
 export const login = async (req: Request, res: Response) => {
   const authUrl = authService.getAuthUrl();

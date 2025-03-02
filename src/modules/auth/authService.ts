@@ -1,6 +1,6 @@
 import qs from "qs";
 import { httpService } from "../../utilities/httpService";
-import { TokenResponse } from '../authTypes'
+import { TokenResponse } from './authTypes'
 
 class AuthService {
     getAuthUrl(): string {
