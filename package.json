@@ -1,0 +1,25 @@
+{
+  "name": "spotify",
+  "version": "1.0.0",
+  "description": "Simple spotify integration",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node executable/index.js"
+  },
+  "author": "Akash Tewari",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "axios": "^1.8.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "querystring": "^0.2.1"
+  }
+}
