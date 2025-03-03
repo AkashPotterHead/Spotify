@@ -85,12 +85,13 @@ MONGO_URI=
    
 2. Start the server:
    sh
-   npm start
+   npm run start
    
-3. The API is now available at `http://localhost:3000`
+3. The API is now available at `http://localhost:4000`
 
 ## Future Improvements
 - Implement caching to reduce API calls.
-- Enhance security with JWT authentication.
+- Define Types for data in service layer.
 - Add unit tests for services and controllers.
+- Auto Token Regeneration Mechanism by using a separate service
 
