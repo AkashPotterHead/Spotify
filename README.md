@@ -3,6 +3,10 @@
 ## Overview
 This backend service integrates with the Spotify API to fetch user-specific track data, retrieves advice based on the track name from the Advice Slip API, and stores the results in MongoDB. It follows a modular structure with separate layers for routing, controllers, services, middleware, and database interactions.
 
+Design Decisions:
+- Maintain generic services for db and http calls to separate concerns, reduce imports and minimize changes required for any future modifications
+- Create 'Modules' containing routes, controllers, services for each type of action/entity (For example: Auth(action), Tracks(entity))
+
 ## Project Structure
 📂 src
 │
@@ -32,18 +36,18 @@ This backend service integrates with the Spotify API to fetch user-specific trac
 
 ## Core Components
 
-### 1. Authentication Module
+### 1. Authentication Module (Routes, Controller, Service)
 Handles Spotify authentication using OAuth 2.0:
 - Login Route: Redirects users to Spotify's authentication page.
 - Callback Route: Exchanges authorization code for an access token.
 - Middleware: Validates the access token.
 
-### 2. Tracks Module
+### 2. Tracks Module (Routes, Controller, Service)
 - Fetches a user’s top track from Spotify based on their user ID.
 - Retrieves relevant advice based on the track name from the Advice Slip API.
 - Stores the retrieved data in MongoDB.
 
-### 3. Database Module
+### 3. Database Service (Singleton Service)
 - Uses Mongoose to manage MongoDB connections and queries.
 - Provides a generic database service for interacting with collections.
 
