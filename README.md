@@ -5,20 +5,6 @@ This backend service integrates with the Spotify API to fetch user-specific trac
 
 ## Project Structure
 
-backend/
-│── src/
-│   ├── controllers/        # Handles HTTP requests and responses
-│   ├── services/           # Business logic implementation
-│   ├── middleware/         # Middleware for authentication and validation
-│   ├── database/           # MongoDB connection and queries
-│   ├── routes/             # API route definitions
-│   ├── models/             # Mongoose schemas for MongoDB
-│   ├── utils/              # Utility functions and helpers
-│   ├── app.ts              # Express app configuration
-│   ├── server.ts           # Server entry point
-│── .env                    # Environment variables
-│── package.json            # Dependencies and scripts
-│── README.md               # Documentation
 
 
 ## Core Components
