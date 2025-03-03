@@ -1,14 +1,19 @@
 import { httpService } from "../../utilities/httpService";
-import {mongoDBService} from '../../utilities/dbService'
+import { mongoDBService } from '../../utilities/dbService'
 import { TrackModel } from './trackModel'
+import { CustomError } from "../../utilities/customError";
 
 
 class TracksService {
-    async getTopTracks(accessToken:string) {
-        const url = process.env.SPOTIFY_TRACK_URL as string
-        return await httpService.get(url, {
-            headers: { Authorization: `Bearer ${accessToken}` },
-        });
+    async getTopTracks(accessToken: string) {
+        try {
+            const url = process.env.SPOTIFY_TRACK_URL as string
+            return await httpService.get(url, {
+                headers: { Authorization: `Bearer ${accessToken}` },
+            });
+        } catch (error: any) {
+            throw new CustomError("Failed to get top track data.", 500);
+        }
     }
 
     async getAdviceForTrack(trackName: string) {
@@ -30,7 +35,7 @@ class TracksService {
             await mongoDBService.insertOne(TrackModel, record);
             return record
         } catch (error: any) {
-           console.log("Error occured while inserting track data into DB")
+            throw new CustomError("Failed to save track data.", 500);
         }
 
 

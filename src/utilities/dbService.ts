@@ -44,6 +44,7 @@
 */
 
 import mongoose from "mongoose";
+import { CustomError } from "../utilities/customError";
 
 class MongoDBService {
     private static instance: MongoDBService;
@@ -59,10 +60,7 @@ class MongoDBService {
     }
 
     async connect(): Promise<void> {
-        if (mongoose.connection.readyState === 1) {
-            console.log("Already connected to MongoDB.");
-            return;
-        }
+        if (mongoose.connection.readyState === 1) return;
 
         try {
             await mongoose.connect(this.dbUri, {
@@ -71,21 +69,17 @@ class MongoDBService {
             } as mongoose.ConnectOptions);
             console.log("Connected to MongoDB.");
         } catch (error) {
-            console.error("MongoDB connection error:", error);
-            throw new Error("Failed to connect to MongoDB.");
-        }
-    }
-
-    async disconnect(): Promise<void> {
-        if (mongoose.connection.readyState !== 0) {
-            await mongoose.disconnect();
-            console.log("Disconnected from MongoDB.");
+            throw new CustomError("Failed to connect to MongoDB.", 500);
         }
     }
 
     async insertOne<T>(model: mongoose.Model<any>, data: T) {
-        const record = new model(data);
-        const response = await record.save();
+        try {
+            const record = new model(data);
+            await record.save();
+        } catch (error) {
+            throw new CustomError("Database insertion failed.", 500);
+        }
     }
 }
 

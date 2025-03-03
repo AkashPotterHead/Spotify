@@ -1,14 +1,14 @@
-import { Request, Response } from "express";
+import { Request, Response,NextFunction } from "express";
 import { tracksService } from "./trackService";
+import { CustomError } from "../../utilities/customError";
 
 class TracksController {
-  async getTracks(req: Request, res: Response): Promise<void> {
+  async getTracks(req: Request, res: Response,next: NextFunction): Promise<void> {
     try {
 
       const topTrackResponse: any = await tracksService.getTopTracks(req?.headers?.accessToken as string);
       if (!topTrackResponse?.items || topTrackResponse?.items.length === 0) {
-        res.status(404).json({ error: "No top track found for this user." });
-        return;
+       throw new CustomError("No track found for user.", 404);
       }
 
       const topTrack = topTrackResponse.items[0];
@@ -18,7 +18,7 @@ class TracksController {
       const savedRecord = await tracksService.saveTrackData(userId, topTrack, advice);
       res.json(savedRecord);
     } catch (error) {
-      res.status(500).json({ error: "Failed to fetch track details" });
+      next(error);//Link the error to the global error handling middleware
     }
   }
 }
