@@ -4,26 +4,30 @@
 This backend service integrates with the Spotify API to fetch user-specific track data, retrieves advice based on the track name from the Advice Slip API, and stores the results in MongoDB. It follows a modular structure with separate layers for routing, controllers, services, middleware, and database interactions.
 
 ## Project Structure
-├── src
-│   ├── modules
-│   │  ├────auth
-          ├──authController.ts  # Module that handles auth related services
-          ├──authRoutes.ts
-          ├──authService.ts
-          ├──authTypes.ts
-       ├─────tracks  # Module that handles track related services
-          ├──trackController.ts 
-          ├──trackRoutes.ts
-          ├──trackService.ts
-          ├──trackModel.ts
-│   ├── middlewares
-│   │   ├── authMiddleware.ts  # Validates access tokens
-│   │   ├── errorHandler.ts    # Centralized error handling
-│   ├── utilities
-│   │   ├── customError.ts  # Creates custom errors
-│   │   ├── dbService.ts    # Singleton service for MongoDB operations
-│   │   ├── httpService.ts  # Generic HTTP client wrapper using Axios
-│   ├── index.ts           # Main application entry point
+📂 src
+│
+├── 📂 modules
+│ ├── 📂 auth (Handles authentication services)
+│ │ ├── 📄 authController.ts
+│ │ ├── 📄 authRoutes.ts
+│ │ ├── 📄 authService.ts
+│ │ ├── 📄 authTypes.ts
+│ ├── 📂 tracks (Handles track-related services)
+│ │ ├── 📄 trackController.ts
+│ │ ├── 📄 trackRoutes.ts
+│ │ ├── 📄 trackService.ts
+│ │ ├── 📄 trackModel.ts
+│
+├── 📂 middlewares
+│ ├── 📄 authMiddleware.ts (Validates access tokens)
+│ ├── 📄 errorHandler.ts (Centralized error handling)
+│
+├── 📂 utilities
+│ ├── 📄 customError.ts (Creates custom errors)
+│ ├── 📄 dbService.ts (Singleton service for MongoDB operations)
+│ ├── 📄 httpService.ts (Generic HTTP client wrapper using Axios)
+│
+├── 📄 index.ts (Main application entry point)
 
 
 ## Core Components
