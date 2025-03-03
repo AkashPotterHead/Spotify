@@ -1,6 +1,5 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { authService } from "../auth/authService";
-import {TokenResponse} from './authTypes'
 
 export const login = async (req: Request, res: Response) => {
   const authUrl = authService.getAuthUrl();
@@ -15,14 +14,11 @@ export const callback = async (req: Request, res: Response): Promise<void> => {/
 
   try {
     const { access_token, refresh_token } = await authService.exchangeCodeForToken(code);
-    res.json({ access_token, refresh_token });
+    const jwt_token = await authService.generateJwtToken(access_token, refresh_token)//Create a JWT token from receieved tokens
+    console.log(`Spotify access token: ${access_token}, \n generated JWT token: ${jwt_token}`)
+    res.json({ jwt_token });
   } catch (error) {
     console.error("Error fetching access token:", error);
     res.status(500).json({ error: "Failed to get access token" });
   }
 };
-
-export const revoke = async (req: Request, res: Response) => {
-  // Implement token revocation logic if needed
-  res.status(501).json({ error: "Revoke endpoint not implemented" });
-}
