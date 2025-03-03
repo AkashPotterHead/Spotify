@@ -68,6 +68,14 @@ SPOTIFY_AUTH_URL=https://accounts.spotify.com/authorize
 SPOTIFY_TOKEN_URL=https://accounts.spotify.com/api/token
 REDIRECT_URI=http://localhost:3000/auth/callback
 MONGO_URI=mongodb://localhost:27017/your_db_name
+PORT=4000
+JWT_SECRET=
+JWT_EXPIRATION=1h
+SPOTIFY_ME_URL=https://api.spotify.com/v1/me
+SPOTIFY_TRACK_URL=https://api.spotify.com/v1/me/top/tracks?time_range=long_term
+SPOTIFY_TOKEN_SCOPE=user-top-read
+REDIRECT_URI=http://localhost:4000/auth/callback
+MONGO_URI=
 
 
 ## Running the Project
