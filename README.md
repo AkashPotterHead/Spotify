@@ -56,7 +56,7 @@ GET /auth/callback    # Handles Spotify callback and retrieves access token
 
 ### Tracks
 
-GET /tracks/:user_id  # Fetches user's top track from Spotify
+GET /tracks/top  # Fetches user's top track from Spotify
 
 
 ## Environment Variables
